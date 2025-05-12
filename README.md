@@ -115,6 +115,7 @@ In 2018, the Rust community created an embedded working group to help drive adop
 - [#stm32-rs:matrix.org] - For discussion of using Embedded Rust on STM32 based devices
 - [#atsamd-rs:gitter.im] - For discussions of using Embedded Rust on ATSAMD devices
 - [#ethercrab:matrix.org] - For discussion of general EtherCAT and the Rust implementation, EtherCrab
+- [#mspm0-rs:matrix.org] - For discussion of using Embedded Rust on Texas Instruments MSPM0 (and MSPS003) devices.
 - [rust-embedded:QQ group] - Chinese community for Rust embedded
 
 [#rust-embedded-graphics:matrix.org]: https://matrix.to/#/#rust-embedded-graphics:matrix.org
@@ -132,6 +133,7 @@ In 2018, the Rust community created an embedded working group to help drive adop
 [#rp-rs:matrix.org]: https://matrix.to/#/#rp-rs:matrix.org
 [#atsamd-rs:gitter.im]: https://matrix.to/#/#atsamd-rs_community:gitter.im
 [#ethercrab:matrix.org]: https://matrix.to/#/#ethercrab:matrix.org
+[#mspm0-rs:matrix.org]: https://matrix.to/#/#mspm0-rs:matrix.org
 [Rust-embedded:QQ group]: https://qm.qq.com/q/A8Hl57xR1C
 
 ## Books, blogs, and training materials
@@ -195,6 +197,7 @@ specifically endorsed or reviewed for accuracy or quality by the Embedded Workin
 - [probe-rs](https://github.com/probe-rs/probe-rs): a modern, embedded debugging toolkit, written in Rust
 - [Knurling Tools](https://knurling.ferrous-systems.com/tools/) are developed by [Ferrous Systems] to ease the development process for building, debugging, and testing embedded Rust systems. These tools include:
   - [defmt](https://github.com/knurling-rs/defmt): a highly efficient logging framework that targets resource-constrained devices, like microcontrollers.
+  - [derive-mmio](https://github.com/knurling-rs/derive-mmio): Creating MMIO-friendly APIs for embedded peripherals.
   - [flip-link](https://github.com/knurling-rs/flip-link), a linker wrapper that provides stack overflow protection without an MMU by flipping the standard memory layout of ARM Cortex-M programs
   - [app-template](https://github.com/knurling-rs/app-template), a `cargo-generate` powered project template for quickly setting up new projects using the Knurling Tools.
   - [defmt-test](https://github.com/knurling-rs/defmt-test), an embedded test harness that lets you write and run unit tests as if you were using the built-in `#[test]` attribute, but will run on an embedded target
@@ -202,6 +205,7 @@ specifically endorsed or reviewed for accuracy or quality by the Embedded Workin
 - [Embassy start](https://github.com/titanclass/embassy-start) is a GitHub repo template for setting up async embedded Rust projects that use [Embassy](https://github.com/embassy-rs/embassy). This particular template targets nRF hardware and networking using the Uarte for the purposes of illustration only.
 - [svd-generator](https://codeberg.org/weathered-steel/svd-generator) CLI tool to parse flattened device tree files, and create a SVD file. - [![crates.io](https://img.shields.io/crates/v/svd-generator.svg)](https://crates.io/crates/svd-generator)
 - [rumbac](https://github.com/akavel/rumbac) is a simple CLI flasher for *Arduino Nano 33 BLE Rev2 / Sense Rev2* boards, using the SAM-BA protocol to talk with the Arduino-provided bootloader, porting just enough of the `bossac` tool to Rust
+- [commitment-issues](https://github.com/dysonltd/commitment-issues) Compile git metadata into your binary.
 
 [embedded-hal-mock]: https://crates.io/crates/embedded-hal-mock
 
@@ -329,6 +333,8 @@ The [`stm32-rs`](https://github.com/stm32-rs/stm32-rs) project has peripheral ac
 
 - [`tm4c123x`](https://crates.io/crates/tm4c123x) Peripheral access API for TM4C123x microcontrollers (generated using svd2rust)
 - [`tm4c129x`](https://crates.io/crates/tm4c129x) Peripheral access API for TM4C129x microcontrollers (generated using svd2rust)
+- [`mspm0-metapac`](https://github.com/mspm0-rs/mspm0-data)
+  - PAC for all MSPM0 (and MSPS003) microcontrollers. (generated using chiptool)
 
 ### MSP430
 
@@ -501,6 +507,8 @@ Also check the list of [STMicroelectronics board support crates][stm-bsc]!
 ### Texas Instruments
 
 - [`tm4c123x-hal`](https://github.com/rust-embedded-community/tm4c-hal/)
+- [`embassy-mspm0`](https://github.com/embassy-rs/embassy/tree/main/embassy-mspm0)
+  - Embassy HAL implementation for all MSPM0 (and MSPS003) microcontrollers.
 
 ### MSP430
 
@@ -1140,6 +1148,8 @@ Work in progress drivers. Help the authors make these crates awesome!
 1. [ublox-cellular-rs] - Serial - Cellular driver for the full Ublox cellular serial based family
 1. [atwinc1500-rs] - SPI - A host driver for the Atwinc1500 network controller
 1. [HX711] - GPIO - An interrupt-based driver for the HX711 Load Cell Amplifier IC. no-std.
+1. [tmag5273] - Cross-platform no_std compatible i2c library for 3-axis Hall Effect sensor.
+1. [paa5100je-pwm3901] - Cross platform no-std compatible spi async library for an Optical Flow Sensor.
 
 [AD9850]: https://crates.io/crates/ad9850
 [AFE4400]: https://github.com/ReeceStevens/afe4400
@@ -1244,7 +1254,8 @@ Work in progress drivers. Help the authors make these crates awesome!
 [ublox-cellular-rs]: https://github.com/BlackbirdHQ/ublox-cellular-rs
 [atwinc1500-rs]: https://crates.io/crates/atwinc1500
 [HX711]: https://github.com/DaneSlattery/hx711
-
+[tmag5273]: https://github.com/dysonltd/tmag5273
+[paa5100je-pwm3901]: https://github.com/dysonltd/paa5100je-pwm3901
 ## no-std crates
 
 [`#![no_std]` crates][no-std-category] designed to run on resource-constrained devices.
